@@ -1,0 +1,50 @@
+1) Install pre requisuite (Run commands via CMD)
+- GitBash/WSL 
+command: wsl --install (This will require computer reboot, then it will ask you for new username and password for the WSL)
+command: wsl -v (To check if installed)
+
+1.1) After installing WSL (Open WSL and run below commands)
+- NodeJS
+command1: sudo apt-get update
+command2: sudo apt install nodejs
+
+- AWSCLI
+command1: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+command2: sudo apt install unzip
+command3: unzip awscliv2.zip
+command4: sudo ./aws/install
+
+- Bc
+command: sudo apt install bc
+
+- jq
+command: sudo apt install jq
+
+2) Update AWS credentials and config
+command1: cd ~/.aws
+command2: nano config (Then under [default], add this " region = ap-southeast-1 ", to set the region. Hit CTRL+S to save and CTRL+X to exit
+command3: nano credentials (under [default] again, paste the copied credentials from AWS except the very first top ex. "[319588890717_AC-PSG-EI-CXSSMO-PROD]")
+command4: aws sts get-caller-identity (To check if it is already returning AWS Account such as UserId)
+
+3) After setting up. Run the script
+command1: cd <directory of the script> (For example, if drive C:/testscriptdirectory then use "cd /mnt/c/testingscriptdirectory")
+command1.1: sample from command 1: cd /mnt/c/Users/jomai/Desktop/NCS/Bashscript/APIstatsBash
+command2: ./apistats.sh #(Input Time only)
+or
+command2: ./apistatsfulldate #(Input Date and Time)
+
+
+IMPORTANT NOTE
+-before you run the bash script, make sure the APIstats_Extract.csv file is not open. 
+Or else, script will receive an error = cannot remove 'APIstats_Extract.csv': Permission denied
+
+-APIstats_Extract.csv will be sorted A to Z base on the AWS script, it will not follow exactly how it sorted
+from our API Stats sheet, since this aws query runs the whole batch script. You can use the Macro keys to help you
+sort it base on our api stats sheet (CTRL + SHIFT + D) and fill up the missing rows like GetTransactionHistory or etc. (Go to MACRO KEYS.txt)
+
+
+
+
+
+
+
